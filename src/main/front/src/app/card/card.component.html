@@ -35,19 +35,29 @@
 
       <div class="form-group" >
         <label for="text">Дедлайн</label>
-        <p-calendar
-          class="form-control-without-box"
-          id="deadline"
-          [(ngModel)]="model.deadline"
-          name="deadline"
-          appendTo="body"
-          dateFormat="dd.mm.yy"
-          icon="pi pi-calendar"
-          showIcon="true"
-          pTooltip="Выбрать дату"
-          tooltipPosition="top"
-        >
-        </p-calendar>
+        <div class="date-clearable">
+          <p-calendar
+            class="form-control-without-box"
+            id="deadline"
+            [(ngModel)]="model.deadline"
+            name="deadline"
+            appendTo="body"
+            dateFormat="dd.mm.yy"
+            icon="pi pi-calendar"
+            showIcon="true"
+            pTooltip="Выбрать дату"
+            tooltipPosition="top"
+          >
+          </p-calendar>
+          <button
+            pButton
+            (click)="clear('deadline')"
+            type="button"
+            icon="pi pi-times"
+            class="float-left"
+            pTooltip="Очистить">
+          </button>
+        </div>
       </div>
 
       <button type="submit" class="btn btn-success" [disabled]="!noteForm.form.valid">Сохранить</button>

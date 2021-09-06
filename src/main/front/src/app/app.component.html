@@ -1,16 +1,18 @@
 <ul class="nav justify-content-center">
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="authService.isAuth()">
     <button pButton type="button" label="В РЕЕСТР" class="ui-button-danger"
             icon="fas fa-plus-circle" [routerLink]="['']">
     </button>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="authService.isAuth()">
     <button pButton type="button" label="Добавить запись" class="ui-button-success"
             icon="fas fa-plus-circle" [routerLink]="['/CARD/NEW']">
     </button>
   </li>
   <li class="nav-item" *ngIf="authService.isAuth()">
-    <a class="nav-link" href="#" (click)="logout()">Logout</a>
+    <button pButton type="button" label="Выйти" class="ui-button-secondary"
+            icon="fas fa-plus-circle" (click)="logout()">
+    </button>
   </li>
 </ul>
 

@@ -18,9 +18,6 @@
                 <mvn.packaging>jar</mvn.packaging>
                 <front.build>build</front.build>
             </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
         <profile>
             <id>prod</id>
@@ -30,6 +27,9 @@
                 <mvn.packaging>war</mvn.packaging>
                 <front.build>buildProd</front.build>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
     </profiles>
 

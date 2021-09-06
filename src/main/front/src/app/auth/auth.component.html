@@ -1,18 +1,18 @@
 <form [formGroup]="form">
   <fieldset>
-    <legend>Login</legend>
+    <legend>Авторизация</legend>
     <div class="form-field">
-      <label>Login:</label>
+      <label>Логин:</label>
       <input name="login" formControlName="login">
     </div>
     <div class="form-field">
-      <label>Password:</label>
+      <label>Пароль:</label>
       <input name="password" formControlName="password"
              type="password">
     </div>
   </fieldset>
   <div class="form-buttons">
     <button class="button button-primary"
-            (click)="login()">Login</button>
+            (click)="login()">Войти</button>
   </div>
 </form>

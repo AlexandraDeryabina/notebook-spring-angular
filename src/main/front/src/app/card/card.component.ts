@@ -5,6 +5,7 @@ import {NotebookService} from "../service/notebook.service";
 import {ActionType} from "../enum/ActionType.enum";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../environments/environment";
+import {isEmpty} from 'lodash';
 
 @Component({
   selector: 'app-card',
@@ -62,5 +63,11 @@ export class CardComponent implements OnInit {
         alert(error);
       }
     );
+  }
+
+  private clear(field: string): void {
+    if (!isEmpty(field)) {
+      this.model[field] = null
+    }
   }
 }
