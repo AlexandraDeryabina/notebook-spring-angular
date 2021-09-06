@@ -1,0 +1,57 @@
+<div class="album py-5 bg-light">
+  <h1 class="center">Записная книжка</h1>
+  <div class="container">
+    <div class="row" *ngIf="!loading; else loadingBlock" >
+      <p-table
+        [columns]="cols"
+        [value]="notebook"
+      >
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template
+          pTemplate="body"
+          let-rowData
+          let-columns="columns">
+          <tr [pSelectableRow]="rowData" (dblclick)="edit(rowData)">
+            <td *ngFor="let col of columns">
+              <div *ngIf="col?.templateIsHtml" [innerHTML]="col?.template(rowData) | safeHtml"
+                   class="cell-text">
+              </div>
+              <div *ngIf="!col?.templateIsHtml">
+                {{ col?.template ? col?.template(rowData) : rowData[col?.field]}}
+              </div>
+              <div *ngIf="col?.field == 'deleteFunction'">
+                <button
+                  pButton
+                  (click)="deleteRow(rowData.id)"
+                  type="button"
+                  icon="pi pi-times"
+                  pTooltip="Удалить запись"
+                  tooltipPosition="left">
+                </button>
+              </div>
+              <div *ngIf="col?.field == 'editFunction'">
+                <button
+                  pButton
+                  (click)="editById(rowData.id)"
+                  type="button"
+                  icon="pi pi-pencil"
+                  pTooltip="Отркыть запись"
+                  tooltipPosition="left">
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <ng-template #loadingBlock>Загрузка</ng-template>
+  </div>
+</div>
+
+

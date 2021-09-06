@@ -1,0 +1,57 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Элемент записной книжки</h1>
+    <form (ngSubmit)="onSubmit()" #noteForm="ngForm">
+      <div class="form-group">
+        <label for="headline">Тема</label>
+        <input type="text" class="form-control" id="headline"
+               required
+               [(ngModel)]="model.headline" name="headline"
+               #headline="ngModel">
+        <div [hidden]="headline.valid || headline.pristine"
+             class="alert alert-danger">
+          Поле "Тема" обязательно для заполнения
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="text">Текст записи</label>
+        <input type="text" class="form-control" id="text"
+               [(ngModel)]="model.text" name="text">
+      </div>
+
+      <div class="form-group">
+        <label for="priority">Срочность</label>
+        <select class="form-control" id="priority"
+                required
+                [(ngModel)]="model.priority" name="priority"
+                #priority="ngModel">
+          <option *ngFor="let prio of priorities" [value]="prio.value">{{prio.label}}</option>
+        </select>
+        <div [hidden]="priority.valid || priority.pristine" class="alert alert-danger">
+          Поле "Срочность" обязательно для заполнения
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <label for="text">Дедлайн</label>
+        <p-calendar
+          class="form-control-without-box"
+          id="deadline"
+          [(ngModel)]="model.deadline"
+          name="deadline"
+          appendTo="body"
+          dateFormat="dd.mm.yy"
+          icon="pi pi-calendar"
+          showIcon="true"
+          pTooltip="Выбрать дату"
+          tooltipPosition="top"
+        >
+        </p-calendar>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!noteForm.form.valid">Сохранить</button>
+
+    </form>
+  </div>
+</div>

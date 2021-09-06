@@ -1,0 +1,28 @@
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <button pButton type="button" label="В РЕЕСТР" class="ui-button-danger"
+            icon="fas fa-plus-circle" [routerLink]="['']">
+    </button>
+  </li>
+  <li class="nav-item">
+    <button pButton type="button" label="Добавить запись" class="ui-button-success"
+            icon="fas fa-plus-circle" [routerLink]="['/CARD/NEW']">
+    </button>
+  </li>
+  <li class="nav-item" *ngIf="authService.isAuth()">
+    <a class="nav-link" href="#" (click)="logout()">Logout</a>
+  </li>
+</ul>
+
+<div class="logedIn-route" *ngIf="authService.isAuth();else notLogged">
+  <ng-container *ngTemplateOutlet="template"></ng-container>
+</div>
+<ng-template #notLogged>
+  <app-auth></app-auth>
+</ng-template>
+
+<ng-template #template>
+  <router-outlet>
+  </router-outlet>
+</ng-template>
+
